@@ -77,7 +77,7 @@ AiScenarioPipeline/
 
 ### Prerequisites
 * Python 3.10+
-* Java JDK 17+ & Apache Maven configured in `PATH`
+* Java JDK 21+ & Apache Maven configured in `PATH`
 * Google Gemini API Key
 
 ### Installation Steps
