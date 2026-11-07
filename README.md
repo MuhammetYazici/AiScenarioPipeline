@@ -39,7 +39,7 @@ This project is the orchestration engine of a dual-repo autonomous testing ecosy
 ## 🚀 Key Architectural Features
 
 ### 1. Shift-Left BDD Synthesis (`--mode design-only`)
-* Inquests requirements from Word (`.docx`) and Excel (`.xlsx`) matrices.
+* Ingests requirements from Word (`.docx`) and Excel (`.xlsx`) matrices.
 * Employs Gemini LLM to extract clean Business Rules and generate structured Cucumber `.feature` scenarios covering positive, negative, and edge cases before a single line of application frontend is deployed.
 * Sanitizes syntax deterministically via zero-token Python Regex engines.
 
@@ -73,15 +73,20 @@ AiScenarioPipeline/
 
 ---
 
-## ⚙️ Installation & Setup
+## 💻 Execution Modes
 
-### Prerequisites
-* Python 3.10+
-* Java JDK 21+ & Apache Maven configured in `PATH`
-* Google Gemini API Key
+The engine provides a decoupled, two-phase execution lifecycle:
 
-### Installation Steps
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/MuhammetYazici/AiScenarioPipeline.git](https://github.com/MuhammetYazici/AiScenarioPipeline.git)
-   cd AiScenarioPipeline
+### Phase 1: Requirement Analysis & Feature Design
+Used during early sprint phases when web pages are not yet deployed.
+```bash
+python scenario_pipeline.py --mode design-only
+
+### Phase 2: Live Automation, Synthesis & Self-Healing
+Triggered once target environments (Staging/Dev) are live.
+python scenario_pipeline.py --mode full-automation
+* Scans DOM/AOM elements, extracts Cucumber CLI contracts, synthesizes Page/Step classes, triggers Maven compile-healer loops, and commits validated suites to Git.
+
+
+🔗 Related Repositories
+Execution & Test Core: aiStagerPlaywright – Enterprise Playwright-Java framework utilizing TestNG, Cucumber BDD, PicoContainer, and Page Object Model (POM).
